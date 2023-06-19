@@ -44,3 +44,22 @@ body {
 .elements li{
     color: white;
 }
+.elements ul a{
+    text-decoration: none;
+    font-weight: 400;
+    color: white;
+}
+
+.elements ul a:active{
+    color: white;
+}
+
+.elements ul a.active {
+    font-size: 16px;
+    color: aqua;
+    font-weight: 500;
+    position: relative;
+}
+
+
+
