@@ -11,8 +11,8 @@ const Navbar = () => {
         <div className="elements">
             <ul>
               <li><NavLink to="/" >ANASAYFA</NavLink></li>
-              <li ><NavLink to="/a" >DERSLER</NavLink></li>
-              <li><NavLink to="/b" >İLETİŞİM</NavLink></li>
+              <li ><NavLink to="/courses" >DERSLER</NavLink></li>
+              <li><NavLink to="/contact" >İLETİŞİM</NavLink></li>
             </ul>
         </div>
       </div>
