@@ -1,24 +1,28 @@
 import "./ContactPage.css";
-import { useState } from "react";
+import { useRef } from "react";
+
 const ContactPage = () => {
-  const [message, setMessage] = useState("");
+ 
+  const titleRef = useRef("");
+  const descriptionRef = useRef("");
+  const emailRef = useRef("");
+
 
   const setData = (event)=>{
     event.preventDefault();
-    setMessage(
+   const message = 
       {
-        title: event.target.title.value,
-        description: event.target.description.value,
-        email: event.target.email.value,
-      },
-    );
-    console.log("setdata: "+message.title);
+        title: titleRef.current.value,
+        description: descriptionRef.current.value,
+        email: emailRef.current.value,
+      };
     sendMessage(message);
-
+    titleRef.current.value = "";
+    descriptionRef.current.value = "";
+    emailRef.current.value = "";
   }
 
   const sendMessage = async  (message) => {
-    console.log("before fetch: "+message)
     try {
       await fetch(
         "https://react-http-901a1-default-rtdb.europe-west1.firebasedatabase.app/messages.json",
@@ -28,7 +32,7 @@ const ContactPage = () => {
         }
       );
     }catch (e){
-      console.log(e);
+      
     }
    
   };
@@ -68,15 +72,15 @@ const ContactPage = () => {
         <form onSubmit={setData}>
           <label className="input">
             <h2>Konu Başlığı</h2>
-            <input id="title" name="title" type="text" />
+            <input id="title" ref={titleRef} name="title" type="text" />
           </label>
           <label>
             <h2>Açıklama</h2>
-            <textarea id="description" name="description" type="text" />
+            <textarea id="description" ref={descriptionRef} name="description" type="text" />
           </label>
           <label>
             <h2>E-mail</h2>
-            <input id="email" name="email" type="text" />
+            <input id="email" ref={emailRef}  name="email" type="text" />
           </label>
           <button type="submit">GÖNDER</button>
         </form>
