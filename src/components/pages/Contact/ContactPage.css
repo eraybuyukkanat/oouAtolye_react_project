@@ -1,0 +1,28 @@
+
+
+input {
+    border: 2px solid black;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+textarea {
+
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+}
+
+.two_column{
+    display: flex;
+}
+
+.two_column > * {
+    width:50%;
+    padding:1rem;
+}
