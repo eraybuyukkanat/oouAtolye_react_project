@@ -6,18 +6,17 @@
 
   
 body{
-    background-color: gold;
     font-family: 'Poppins','sans-serif';
 }
 
 .container-contact-main{
-    background-color: burlywood;
+    background-color: white;
 }
 
 .container-contact{
     width: 80%;
-    height: 100vh;
-    margin: 0px auto;
+    height: 0%;
+    margin: 50px auto;
 }
 
 .contact-box{
@@ -69,6 +68,7 @@ textarea{
     outline: none;
     padding: 10px;
     box-sizing: border-box;
+   resize: none;
 }
 
 label{

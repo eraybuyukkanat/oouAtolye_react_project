@@ -5,8 +5,7 @@ const Navbar = () => {
     <div className="navbar">
       <div className="container">
         <div className="logo">
-          <img src='/images/logo.jpg' width="100px" height="100px"/>
-          <h4>Ses ve Sahne Sanatları Atölyesi</h4>
+          <img src='/images/ooulogo.jpg' width="120px" height="120px"/>
         </div>
         <div className="elements">
             <ul>

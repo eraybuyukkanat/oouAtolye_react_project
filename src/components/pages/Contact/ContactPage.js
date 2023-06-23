@@ -14,9 +14,10 @@ const ContactPage = () => {
       email: emailRef.current.value,
     };
     sendMessage(message);
-    titleRef.current.value = "";
-    descriptionRef.current.value = "";
-    emailRef.current.value = "";
+    emailRef.current.value = ''
+    titleRef.current.value = ''
+    descriptionRef.current.value = ''
+   
   };
 
   const sendMessage = async (message) => {
@@ -34,57 +35,39 @@ const ContactPage = () => {
   return (
     <div className="container-contact-main">
       <div className="container-contact">
-        <h1>Bizimle İletişime Geç!</h1>
-        <p>YAZIIII</p>
         <div className="contact-box">
           <div className="contact-left">
-            <h3>İsteğini gönder</h3>
+            <h3>İletişime Geç</h3>
             <form onSubmit={setData}>
               <div className="input-row">
                 <div className="input-group">
                   <label>Konu Başlığı</label>
                   <input
                     id="title"
-                    placeholder="Konu başlığı..."
+                    maxLength='40'
                     ref={titleRef}
                     name="title"
                     type="text"
                   />
                 </div>
-                <div className="input-group">
-                  <label>Açıklama</label>
-                  <textarea
-                    id="description"
-                    ref={descriptionRef}
-                    name="description"
-                    type="text"
-                  />
-                </div>
+                
               </div>
               <div className="input-row">
                 <div className="input-group">
                   <label>Email</label>
                   <input
                     id="title"
-                    placeholder="Konu başlığı..."
                     ref={emailRef}
+                    maxLength='40'
                     name="title"
                     type="email"
                   />
                 </div>
-                <div className="input-group">
-                  <label>Açıklama</label>
-                  <textarea
-                    id="description"
-                    ref={descriptionRef}
-                    name="description"
-                    type="text"
-                  />
-                </div>
+                
               </div>
 
-              <label>Message</label>
-              <textarea rows="10" placeholder="Mesaj..."></textarea>
+              <label>Mesaj</label>
+              <textarea id="description" name="description" ref={descriptionRef} rows="10" maxLength="500"></textarea>
               <button type="submit">Gönder</button>
             </form>
           </div>
