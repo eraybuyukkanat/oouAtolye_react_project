@@ -1,19 +1,89 @@
 import "./ContactPage.css";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const ContactPage = () => {
   const titleRef = useRef("");
   const descriptionRef = useRef("");
   const emailRef = useRef("");
 
+  const [enteredTitleTouched,setEnteredTitleTouched] = useState(false);
+  const [enteredMessageTouched,setEnteredMessageTouched] = useState(false);
+  const [enteredEmailTouched,setEnteredEmailTouched] = useState(false);
+
+  const [enteredTitle,setEnteredTitle] = useState("");
+  const [enteredMessage,setEnteredMessage] = useState("");
+  const [enteredEmail,setEnteredEmail] = useState("");
+
+ const [titleIsValid,setTitleIsValid] = useState(false); 
+ const [messageIsValid,setMessageIsValid] = useState(false); 
+ const [emailIsValid,setEmailIsValid] = useState(false); 
+
+
+
+  const titleHandler = (event)=>{
+    setEnteredTitle(event.target.value)
+    setTitleIsValid(true);
+
+  }
+
+  const messageHandler = (event)=>{
+    setEnteredMessage(event.target.value)
+    setMessageIsValid(true)
+  }
+
+  const emailHandler = (event)=>{
+    setEnteredEmail(event.target.value)
+    setEmailIsValid(true)
+  }
+
+  const titleIsOK = (event)=>{
+    setEnteredTitleTouched(true)
+    if(enteredTitle.trim() === ""){
+      setTitleIsValid(false);
+      return;
+    }else{
+      setTitleIsValid(true)
+    }
+    setEnteredTitleTouched(true);
+  }
+
+  const messageIsOK = (event)=>{
+    setEnteredMessageTouched(true)
+    if(enteredMessage.trim() === ""){
+      setMessageIsValid(false);
+      return;
+    }else{
+      setMessageIsValid(true)
+    }
+  }
+
+  const emailIsOK = (event)=>{
+    setEnteredEmailTouched(true);
+    if(enteredEmail.trim() === ""){
+      setEmailIsValid(false);
+      return;
+    }else{
+      setEmailIsValid(true)
+    }
+  }
+
+
   const setData = (event) => {
     event.preventDefault();
+    setEnteredTitleTouched(true)
+    setEnteredMessageTouched(true)
+    setEnteredEmailTouched(true)
+
+    if(messageIsValid && emailIsValid && titleIsValid){
     const message = {
       title: titleRef.current.value,
       description: descriptionRef.current.value,
       email: emailRef.current.value,
     };
-    sendMessage(message);
+      sendMessage(message);
+
+    }
+    
     emailRef.current.value = ''
     titleRef.current.value = ''
     descriptionRef.current.value = ''
@@ -32,6 +102,10 @@ const ContactPage = () => {
     } catch (e) {}
   };
 
+  const titleInputIsInvalid = !titleIsValid && enteredTitleTouched;
+  const messageInputIsInvalid = !messageIsValid && enteredMessageTouched;
+  const emailInputIsInvalid = !emailIsValid && enteredEmailTouched;
+
   return (
     <div className="container-contact-main">
       <div className="container-contact">
@@ -48,8 +122,12 @@ const ContactPage = () => {
                     ref={titleRef}
                     name="title"
                     type="text"
+                    onChange={titleHandler}
+                    onBlur={titleIsOK}
                   />
+                 {titleInputIsInvalid && <h5>Konu başlığını boş bırakamazsınız</h5>}
                 </div>
+               
                 
               </div>
               <div className="input-row">
@@ -61,13 +139,17 @@ const ContactPage = () => {
                     maxLength='40'
                     name="title"
                     type="email"
+                    onChange={emailHandler}
+                    onBlur={emailIsOK}
                   />
+                  {emailInputIsInvalid && <h5>Emaili boş bırakamazsınız</h5>}
                 </div>
                 
               </div>
 
               <label>Mesaj</label>
-              <textarea id="description" name="description" ref={descriptionRef} rows="10" maxLength="500"></textarea>
+              <textarea id="description" name="description" ref={descriptionRef} rows="10" maxLength="500" onChange={messageHandler} onBlur={messageIsOK}></textarea>
+              {messageInputIsInvalid && <h5>Mesajı boş bırakamazsınız</h5>}
               <button type="submit">Gönder</button>
             </form>
           </div>
