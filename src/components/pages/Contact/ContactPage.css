@@ -33,13 +33,19 @@ body{
 .contact-right{
     flex-basis: 40%;
     padding: 40px;
-    background: #1c00b5;
-    color: #fff;
+    background: #fff;
+    color: #1c00b5;
 }
 
 h1{
     margin-bottom: 10px;
 }
+
+h5{
+    margin-top: 10px;
+    color: red;
+}
+
 
 .container p {
     margin-bottom: 40px;

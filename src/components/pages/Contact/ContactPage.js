@@ -82,11 +82,24 @@ const ContactPage = () => {
     };
       sendMessage(message);
 
+      emailRef.current.value   = '';
+      titleRef.current.value = '';
+      descriptionRef.current.value = '';
+
+      setTitleIsValid(false)
+      setEmailIsValid(false)
+      setMessageIsValid(false)
+
+      setEnteredEmailTouched(false)
+      setEnteredMessageTouched(false)
+      setEnteredTitleTouched(false)
+
+      setEnteredTitle('')
+      setEnteredEmail('')
+      setEnteredMessage('')
     }
     
-    emailRef.current.value = ''
-    titleRef.current.value = ''
-    descriptionRef.current.value = ''
+   
    
   };
 
