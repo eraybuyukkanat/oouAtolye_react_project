@@ -2,107 +2,73 @@ import "./ContactPage.css";
 import { useEffect, useRef, useState } from "react";
 
 const ContactPage = () => {
-  const titleRef = useRef("");
-  const descriptionRef = useRef("");
-  const emailRef = useRef("");
 
-  const [enteredTitleTouched,setEnteredTitleTouched] = useState(false);
-  const [enteredMessageTouched,setEnteredMessageTouched] = useState(false);
-  const [enteredEmailTouched,setEnteredEmailTouched] = useState(false);
+  
+  const [enteredTitleTouched, setEnteredTitleTouched] = useState(false);
+  const [enteredMessageTouched, setEnteredMessageTouched] = useState(false);
+  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
 
-  const [enteredTitle,setEnteredTitle] = useState("");
-  const [enteredMessage,setEnteredMessage] = useState("");
-  const [enteredEmail,setEnteredEmail] = useState("");
+  const [enteredTitle, setEnteredTitle] = useState("");
+  const [enteredMessage, setEnteredMessage] = useState("");
+  const [enteredEmail, setEnteredEmail] = useState("");
 
- const [titleIsValid,setTitleIsValid] = useState(false); 
- const [messageIsValid,setMessageIsValid] = useState(false); 
- const [emailIsValid,setEmailIsValid] = useState(false); 
+  const titleIsValid = enteredTitle.trim() !== "";
+  const messageIsValid = enteredMessage.trim() !== "";
+  const emailIsValid = enteredEmail.trim() !== "";
 
-
-
-  const titleHandler = (event)=>{
-    setEnteredTitle(event.target.value)
-    setTitleIsValid(true);
-
-  }
-
-  const messageHandler = (event)=>{
-    setEnteredMessage(event.target.value)
-    setMessageIsValid(true)
-  }
-
-  const emailHandler = (event)=>{
-    setEnteredEmail(event.target.value)
-    setEmailIsValid(true)
-  }
-
-  const titleIsOK = (event)=>{
-    setEnteredTitleTouched(true)
-    if(enteredTitle.trim() === ""){
-      setTitleIsValid(false);
-      return;
-    }else{
-      setTitleIsValid(true)
-    }
-    setEnteredTitleTouched(true);
-  }
-
-  const messageIsOK = (event)=>{
-    setEnteredMessageTouched(true)
-    if(enteredMessage.trim() === ""){
-      setMessageIsValid(false);
-      return;
-    }else{
-      setMessageIsValid(true)
-    }
-  }
-
-  const emailIsOK = (event)=>{
-    setEnteredEmailTouched(true);
-    if(enteredEmail.trim() === ""){
-      setEmailIsValid(false);
-      return;
-    }else{
-      setEmailIsValid(true)
-    }
-  }
+  const titleInputIsInvalid = !titleIsValid && enteredTitleTouched;
+  const messageInputIsInvalid = !messageIsValid && enteredMessageTouched;
+  const emailInputIsInvalid = !emailIsValid && enteredEmailTouched;
 
 
-  const setData = (event) => {
-    event.preventDefault();
-    setEnteredTitleTouched(true)
-    setEnteredMessageTouched(true)
-    setEnteredEmailTouched(true)
-
-    if(messageIsValid && emailIsValid && titleIsValid){
-    const message = {
-      title: titleRef.current.value,
-      description: descriptionRef.current.value,
-      email: emailRef.current.value,
-    };
-      sendMessage(message);
-
-      emailRef.current.value   = '';
-      titleRef.current.value = '';
-      descriptionRef.current.value = '';
-
-      setTitleIsValid(false)
-      setEmailIsValid(false)
-      setMessageIsValid(false)
-
-      setEnteredEmailTouched(false)
-      setEnteredMessageTouched(false)
-      setEnteredTitleTouched(false)
-
-      setEnteredTitle('')
-      setEnteredEmail('')
-      setEnteredMessage('')
-    }
-    
-   
-   
+  //EVERY KEYSTROKE
+  const titleHandler = (event) => {
+    setEnteredTitle(event.target.value);
+  };
+  const messageHandler = (event) => {
+    setEnteredMessage(event.target.value);
+  };
+  const emailHandler = (event) => {
+    setEnteredEmail(event.target.value);
   };
 
+  //AFTER
+  const titleIsOK = (event) => {
+    setEnteredTitleTouched(true);
+  };
+  const messageIsOK = (event) => {
+    setEnteredMessageTouched(true);
+  };
+  const emailIsOK = (event) => {
+    setEnteredEmailTouched(true);
+  };
+
+  //BUTTON
+  const setData = (event) => {
+    event.preventDefault();
+    setEnteredTitleTouched(true);
+    setEnteredMessageTouched(true);
+    setEnteredEmailTouched(true);
+
+    if (messageIsValid && emailIsValid && titleIsValid) {
+      const message = {
+        title: enteredTitle,
+        description: enteredMessage,
+        email: enteredEmail,
+      };
+      sendMessage(message);
+
+      setEnteredEmailTouched(false);
+      setEnteredMessageTouched(false);
+      setEnteredTitleTouched(false);
+
+      setEnteredTitle("");
+      setEnteredEmail("");
+      setEnteredMessage("");
+    }
+  };
+
+  //DATA
   const sendMessage = async (message) => {
     try {
       await fetch(
@@ -115,59 +81,78 @@ const ContactPage = () => {
     } catch (e) {}
   };
 
-  const titleInputIsInvalid = !titleIsValid && enteredTitleTouched;
-  const messageInputIsInvalid = !messageIsValid && enteredMessageTouched;
-  const emailInputIsInvalid = !emailIsValid && enteredEmailTouched;
+  
+  //CSS
+  const inputTitleClass =
+    !titleIsValid && enteredTitleTouched
+      ? "input-group invalid"
+      : "input-group";
+  const inputEmailClass =
+    !emailIsValid && enteredEmailTouched
+      ? "input-group invalid"
+      : "input-group";
+  const textareaMessageClass =
+    !messageIsValid && enteredMessageTouched
+      ? "input-group invalid"
+      : "input-group";
 
   return (
     <div className="container-contact-main">
       <div className="container-contact">
         <div className="contact-box">
           <div className="contact-left">
-            <h3>İletişime Geç</h3>
+            <h2>İletişime Geç</h2>
             <form onSubmit={setData}>
               <div className="input-row">
-                <div className="input-group">
+                <div className={inputTitleClass}>
                   <label>Konu Başlığı</label>
                   <input
                     id="title"
-                    maxLength='40'
-                    ref={titleRef}
+                    maxLength="40"
                     name="title"
                     type="text"
                     onChange={titleHandler}
                     onBlur={titleIsOK}
+                    value={enteredTitle}
                   />
-                 {titleInputIsInvalid && <h5>Konu başlığını boş bırakamazsınız</h5>}
+                  {titleInputIsInvalid && (
+                    <h5>Konu başlığını boş bırakamazsınız</h5>
+                  )}
                 </div>
-               
-                
               </div>
               <div className="input-row">
-                <div className="input-group">
+                <div className={inputEmailClass}>
                   <label>Email</label>
                   <input
                     id="title"
-                    ref={emailRef}
-                    maxLength='40'
+                    maxLength="40"
                     name="title"
                     type="email"
                     onChange={emailHandler}
+                    value={enteredEmail}
                     onBlur={emailIsOK}
                   />
                   {emailInputIsInvalid && <h5>Emaili boş bırakamazsınız</h5>}
                 </div>
-                
               </div>
-
-              <label>Mesaj</label>
-              <textarea id="description" name="description" ref={descriptionRef} rows="10" maxLength="500" onChange={messageHandler} onBlur={messageIsOK}></textarea>
-              {messageInputIsInvalid && <h5>Mesajı boş bırakamazsınız</h5>}
+              <div className={textareaMessageClass}>
+                <label>Mesaj</label>
+                <textarea
+                  id="description"
+                  name="description"
+                  value={enteredMessage}
+                  rows="10"
+                  maxLength="500"
+                  onChange={messageHandler}
+                  onBlur={messageIsOK}
+                ></textarea>
+                {messageInputIsInvalid && <h5>Mesajı boş bırakamazsınız</h5>}
+              </div>
               <button type="submit">Gönder</button>
             </form>
           </div>
           <div className="contact-right">
-            <h3>Atölyemiz Hakkında</h3>
+            <h2>Atölyemiz Hakkında</h2>
             <p>
               Oou Ses ve Sahne Sanatları Atölyesi'ne Hoş Geldiniz! 2022 yılında
               Ali Hikmet Kürekçi tarafından kurulan Oou Ses ve Sahne Sanatları

@@ -46,6 +46,11 @@ h5{
     color: red;
 }
 
+h2{
+    color: black;
+    padding-bottom:30px;
+}
+
 
 .container p {
     margin-bottom: 40px;
@@ -68,7 +73,17 @@ input{
     border-width: 1px;
 }
 
-textarea{
+.invalid input {
+    border: 1px solid #b40e0e;
+    background-color: #fddddd;
+  }
+
+  .invalid input:focus {
+    border-color: #00b7ff;
+    background-color: #d2f1fb;
+  }
+
+  textarea{
     width: 100%;
     border: 1px solid black;
     padding: 10px;
@@ -76,6 +91,17 @@ textarea{
    resize: none;
   border-width: 1px;
 }
+
+.invalid textarea {
+    border: 1px solid #b40e0e;
+    background-color: #fddddd;
+  }
+
+  .invalid textarea:focus {
+    border-color: #00b7ff;
+    background-color: #d2f1fb;
+  }
+
 
 label{
     margin-bottom: 6px;
