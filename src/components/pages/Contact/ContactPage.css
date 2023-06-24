@@ -15,9 +15,9 @@ body{
 }
 
 .container-contact{
-    width: 80%;
+    width: 90%;
     height: 0%;
-    margin: 50px auto;
+    margin: 0px auto;
 }
 
 .contact-box{
@@ -31,6 +31,11 @@ body{
 }
 
 .contact-right{
+    flex-basis: 70%;
+    padding: 40px;
+}
+
+.contact-mid{
     flex-basis: 40%;
     padding: 40px;
     background: #fff;
@@ -48,7 +53,7 @@ h5{
 
 h2{
     color: black;
-    padding-bottom:30px;
+    padding-bottom:10px;
 }
 
 
@@ -127,7 +132,7 @@ button{
     margin-bottom: 30px;
 }
 
-.contact-right h3{
+.contact-mid h3{
     font-weight: 600;
     margin-bottom: 30px;
 }

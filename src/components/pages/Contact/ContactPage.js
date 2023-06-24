@@ -1,8 +1,15 @@
+import Map from "../../sources/Map/Map";
 import "./ContactPage.css";
 import { useEffect, useRef, useState } from "react";
 
 const ContactPage = () => {
 
+
+  const location = {
+    address: 'Feneryolu, Şehir Kahya Sk. no: 6-a, 34724 Kadıköy/İstanbul',
+    lat: 40.98443,
+    lng: 29.04319,
+  }
   
   const [enteredTitleTouched, setEnteredTitleTouched] = useState(false);
   const [enteredMessageTouched, setEnteredMessageTouched] = useState(false);
@@ -151,7 +158,7 @@ const ContactPage = () => {
               <button type="submit">Gönder</button>
             </form>
           </div>
-          <div className="contact-right">
+          <div className="contact-mid">
             <h2>Atölyemiz Hakkında</h2>
             <p>
               Oou Ses ve Sahne Sanatları Atölyesi'ne Hoş Geldiniz! 2022 yılında
@@ -180,6 +187,10 @@ const ContactPage = () => {
               ulaşın. Atölyemizde sizi ağırlamaktan ve sanat yolculuğunuzda size
               rehberlik etmekten büyük bir memnuniyet duyacağız.
             </p>
+            
+          </div>
+          <div className="contact-right">
+          <Map location={location} zoomLevel={17} />
           </div>
         </div>
       </div>
