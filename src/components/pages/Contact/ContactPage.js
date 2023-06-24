@@ -1,77 +1,61 @@
 import Map from "../../sources/Map/Map";
 import "./ContactPage.css";
-import { useEffect, useRef, useState } from "react";
+import useInput from "../../hooks/use-input";
 
 const ContactPage = () => {
-
-
   const location = {
-    address: 'Feneryolu, Şehir Kahya Sk. no: 6-a, 34724 Kadıköy/İstanbul',
+    address: "Feneryolu, Şehir Kahya Sk. no: 6-a, 34724 Kadıköy/İstanbul",
     lat: 40.98443,
     lng: 29.04319,
-  }
-  
-  const [enteredTitleTouched, setEnteredTitleTouched] = useState(false);
-  const [enteredMessageTouched, setEnteredMessageTouched] = useState(false);
-  const [enteredEmailTouched, setEnteredEmailTouched] = useState(false);
-
-  const [enteredTitle, setEnteredTitle] = useState("");
-  const [enteredMessage, setEnteredMessage] = useState("");
-  const [enteredEmail, setEnteredEmail] = useState("");
-
-  const titleIsValid = enteredTitle.trim() !== "";
-  const messageIsValid = enteredMessage.trim() !== "";
-  const emailIsValid = enteredEmail.trim() !== "";
-
-  const titleInputIsInvalid = !titleIsValid && enteredTitleTouched;
-  const messageInputIsInvalid = !messageIsValid && enteredMessageTouched;
-  const emailInputIsInvalid = !emailIsValid && enteredEmailTouched;
-
-
-  //EVERY KEYSTROKE
-  const titleHandler = (event) => {
-    setEnteredTitle(event.target.value);
-  };
-  const messageHandler = (event) => {
-    setEnteredMessage(event.target.value);
-  };
-  const emailHandler = (event) => {
-    setEnteredEmail(event.target.value);
   };
 
-  //AFTER
-  const titleIsOK = (event) => {
-    setEnteredTitleTouched(true);
-  };
-  const messageIsOK = (event) => {
-    setEnteredMessageTouched(true);
-  };
-  const emailIsOK = (event) => {
-    setEnteredEmailTouched(true);
-  };
+  const {
+    enteredValue: enteredTitle,
+    enteredValueTouched: enteredTitleTouched,
+    valueIsValid: titleIsValid,
+    IsValueTouched: titleIsOK,
+    valueInputIsInvalid: titleInputIsInvalid,
+    valueHandler: titleHandler,
+    resetFunc: resetTitle
+  } = useInput(value=>value.trim()!=="");
 
-  //BUTTON
+  const {
+    enteredValue: enteredMessage,
+    enteredValueTouched: enteredMessageTouched,
+    valueIsValid: messageIsValid,
+    IsValueTouched: messageIsOK,
+    valueInputIsInvalid: messageInputIsInvalid,
+    valueHandler: messageHandler,
+    resetFunc: resetMessage
+  } = useInput(value=>value.trim()!=="");
+
+  const {
+    enteredValue: enteredEmail,
+    enteredValueTouched: enteredEmailTouched,
+    valueIsValid: emailIsValid,
+    IsValueTouched: emailIsOK,
+    valueInputIsInvalid: emailInputIsInvalid,
+    valueHandler: emailHandler,
+    resetFunc: resetEmail
+  } = useInput(value=>value.trim() !== "");
+
+
   const setData = (event) => {
     event.preventDefault();
-    setEnteredTitleTouched(true);
-    setEnteredMessageTouched(true);
-    setEnteredEmailTouched(true);
-
+    titleIsOK();
+    messageIsOK();
+    emailIsOK();
     if (messageIsValid && emailIsValid && titleIsValid) {
       const message = {
         title: enteredTitle,
         description: enteredMessage,
         email: enteredEmail,
-      };
+      }
       sendMessage(message);
-
-      setEnteredEmailTouched(false);
-      setEnteredMessageTouched(false);
-      setEnteredTitleTouched(false);
-
-      setEnteredTitle("");
-      setEnteredEmail("");
-      setEnteredMessage("");
+      resetTitle();
+      resetMessage();
+      resetEmail();
+      
     }
   };
 
@@ -88,7 +72,6 @@ const ContactPage = () => {
     } catch (e) {}
   };
 
-  
   //CSS
   const inputTitleClass =
     !titleIsValid && enteredTitleTouched
@@ -187,10 +170,9 @@ const ContactPage = () => {
               ulaşın. Atölyemizde sizi ağırlamaktan ve sanat yolculuğunuzda size
               rehberlik etmekten büyük bir memnuniyet duyacağız.
             </p>
-            
           </div>
           <div className="contact-right">
-          <Map location={location} zoomLevel={17} />
+            <Map location={location} zoomLevel={17} />
           </div>
         </div>
       </div>
