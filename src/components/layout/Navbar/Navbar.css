@@ -55,12 +55,12 @@ body {
 }
 
 .elements ul a:active{
-    color: white;
+    color: beige;
 }
 
 .elements ul a.active {
     font-size: 16px;
-    color: white;
+    color: beige;
     font-weight: 500;
     position: relative;
 }
