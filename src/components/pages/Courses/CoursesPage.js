@@ -1,6 +1,9 @@
+import Navbar from "../../layout/Navbar/Navbar";
 
 const CoursesPage = ()=>{
-    return <div>AA</div>
+    return <>
+    <Navbar />
+    AA</>
 }
 
 export default CoursesPage;
