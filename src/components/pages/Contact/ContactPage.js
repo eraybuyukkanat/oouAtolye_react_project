@@ -5,8 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { sendContactData } from "../../../store/contact-actions";
 import Notification from "../../ui/Notification";
 import Navbar from "../../layout/Navbar/Navbar";
-import { useEffect, useLayoutEffect } from "react";
-import uiSlice, { uiActions } from "../../../store/ui-slice";
+import { uiActions } from "../../../store/ui-slice";
 const ContactPage = () => {
   const dispatch = useDispatch();
 
@@ -187,7 +186,8 @@ const ContactPage = () => {
               </p>
             </div>
             <div className="contact-right">
-              <Map location={location} zoomLevel={17} />
+              <Map location={location} zoomLevel={17} />  
+              <h2 style={{margin: 10}}>Feneryolu, Şehir Kahya Sk. no: 6-a, 34724 Kadıköy/İstanbul</h2>
             </div>
           </div>
         </div>
