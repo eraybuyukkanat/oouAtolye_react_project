@@ -3,3 +3,16 @@
     justify-content: center;
     margin: 20px;
 }
+
+.container_podcast{
+    display: flex;
+}
+
+.h1{
+    margin: 20px;
+}
+
+.p{
+    margin: 20px;
+    font-weight:600;
+}

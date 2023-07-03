@@ -5,7 +5,7 @@ const SpotifyPlayerWidget = (props) => {
     width: 1000,
     height: 300,
   };
-  const view = "coverart"; // or 'coverart'
+  const view = "list"; // or 'coverart'
   const theme = "black"; // or 'white'
   return (
     <>

@@ -26,20 +26,26 @@ body{
 }
 
 .contact-left{
-    flex-basis: 60%;
+    flex-basis: 50%;
     padding: 40px 60px;
 }
 
 .contact-right{
-    flex-basis: 70%;
+    flex-basis: 50%;
     padding: 40px;
 }
 
 .contact-mid{
-    flex-basis: 40%;
+    flex-basis: 50%;
     padding: 40px;
     background: #fff;
     color: #1c00b5;
+}
+
+.contact-mid p{
+    font-weight: 700;
+    color: black;
+    font-size: 18px;
 }
 
 h1{
@@ -52,7 +58,7 @@ h5{
 }
 
 h2{
-    color: black;
+    color: #1c00b5;
     padding-bottom:10px;
 }
 
@@ -111,7 +117,7 @@ input{
 label{
     margin-bottom: 6px;
     display: block;
-    color: #1c00b5
+    color: black
 }
 
 button{
