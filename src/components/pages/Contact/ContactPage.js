@@ -99,7 +99,6 @@ const ContactPage = () => {
           message={notification.message}
         />
       )}
-      <Navbar />
       <div className="container-contact-main">
         <div className="container-contact">
           <div className="contact-box">

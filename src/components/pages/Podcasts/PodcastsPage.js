@@ -32,7 +32,6 @@ const PodcastsPage = () => {
 
   return (
     <>
-      <Navbar />
       <div className={styles.grid}>
         {url.map((item)=> <SpotifyPlayerWidget url={item} />)}
       </div>

@@ -1,10 +1,8 @@
-import Navbar from '../../layout/Navbar/Navbar';
 import './HomePage.css'
 const Home = () => {
 
   return (
     <>
-    <Navbar />
     <div className='main-container'>
       <div className='video_container'>
         <video src="/videos/video.mp4" autoPlay loop muted/>
