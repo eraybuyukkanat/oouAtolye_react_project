@@ -1,8 +1,21 @@
-import React from "react";
-import Navbar from "../../layout/Navbar/Navbar";
+import React, { useEffect, useState } from "react";
 import SpotifyPlayerWidget from "./SpotifyPlayer";
 import styles from "./PodcastsPage.module.css";
+import ContentLoader from '../../ui/ContentLoader'
 const PodcastsPage = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoading = () => {
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+        handleLoading();
+    }, 1000);
+
+  }, []);
+
   const url = [
     "https://open.spotify.com/episode/1wg2O5hCQlpuPnWAR0ZiuM?si=1bfbcb5e004d4859",
     "https://open.spotify.com/episode/4qCrxBBHrbyWExDqY0eJud?si=f0a63780e7724103",
@@ -34,12 +47,19 @@ const PodcastsPage = () => {
       <div className={styles.container_podcast}>
         <div className={styles.grid}>
           {url.map((item) => (
+            isLoading ? <ContentLoader /> :
             <SpotifyPlayerWidget url={item} />
           ))}
         </div>
-        <div>
+        <div className={styles.text_container}>
           <h1 className={styles.h1}>Meditasyon Egzersizleri Podcast Serisi</h1>
-          <p className={styles.p}>Podcastleri <a href="https://open.spotify.com/show/0e08AJdrnZ9b3wWUnTmASX?si=d03d1ac416d24ccd">Spotify</a> üzerinden dinleyebilirsiniz...</p>
+          <p className={styles.p}>
+            Podcastleri{" "}
+            <a href="https://open.spotify.com/show/0e08AJdrnZ9b3wWUnTmASX?si=d03d1ac416d24ccd">
+              Spotify
+            </a>{" "}
+            üzerinden dinleyebilirsiniz...
+          </p>
         </div>
       </div>
     </>

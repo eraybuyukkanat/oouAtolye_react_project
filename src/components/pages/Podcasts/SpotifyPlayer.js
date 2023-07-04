@@ -7,16 +7,11 @@ const SpotifyPlayerWidget = (props) => {
   };
   const view = "list"; // or 'coverart'
   const theme = "black"; // or 'white'
+
   return (
     <>
-
-      <SpotifyPlayer
-        uri={props.url}
-        size={size}
-        view={view}
-        theme={theme}
-      />
-  </>
+      <SpotifyPlayer uri={props.url} size={size} view={view} theme={theme} />
+    </>
   );
 };
 

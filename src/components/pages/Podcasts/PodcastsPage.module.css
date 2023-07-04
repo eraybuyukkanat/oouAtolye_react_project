@@ -1,6 +1,7 @@
 .grid{
     display: grid;
     justify-content: center;
+    flex-basis: 60%;
     margin: 20px;
 }
 
@@ -15,4 +16,8 @@
 .p{
     margin: 20px;
     font-weight:600;
+}
+
+.text_container{
+    flex-basis: 40%;
 }
